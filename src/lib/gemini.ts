@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai'
 
-const apiKey = process.env.GEMINI_API_KEY!
+const apiKey = process.env.GEMINI_API_KEY || 'demo-placeholder-key'
 const genAI = new GoogleGenerativeAI(apiKey)
 
 const safetySettings = [
@@ -10,9 +10,9 @@ const safetySettings = [
   { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
 ]
 
-// Gemini 3.5 Flash — fast, reliable model for chat, tasks, summaries
+// Gemini 1.5 Flash — fast, reliable model for chat, tasks, summaries
 export const geminiFlash = genAI.getGenerativeModel({
-  model: 'gemini-3.5-flash',
+  model: 'gemini-1.5-flash',
   safetySettings,
   generationConfig: {
     temperature: 0.7,
@@ -21,9 +21,9 @@ export const geminiFlash = genAI.getGenerativeModel({
   },
 })
 
-// Gemini 3.5 Flash / Pro — high-capability model for document analysis and roadmaps
+// Gemini 1.5 Pro — high-capability model for document analysis and roadmaps
 export const geminiPro = genAI.getGenerativeModel({
-  model: 'gemini-3.5-flash',
+  model: 'gemini-1.5-pro',
   safetySettings,
   generationConfig: {
     temperature: 0.6,
